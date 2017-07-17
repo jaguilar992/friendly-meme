@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
  * Devuelve (Despúes de depurar) un Proceso a insertar en la pila de Nuevos y Posteriormente
  * Separar por prioridades en una Lista de Procesos nuevos.
  * */
-public class Conversor {
+public class Parser {
 
-	public String linea;
+	private String linea;
 	private Proceso proceso;
 	private String [] campos;
 	/*
@@ -23,8 +23,8 @@ public class Conversor {
 	 * */
 	public boolean isOK = false; // Almacena un valor lógico, si la conversión es exitosa.
 	
-	public Conversor(){}
-	public Conversor(String linea){
+	public Parser(){}
+	public Parser(String linea){
 		this.linea = linea;
 		this.separar();
 		this.crearProceso();
@@ -32,6 +32,9 @@ public class Conversor {
 	
 	
 	
+	public String getLinea() {
+		return linea;
+	}
 	public Proceso getProceso() {
 		return proceso;
 	}
@@ -94,13 +97,13 @@ public class Conversor {
 		try {
 			int[] len = {4,1,1,3,3,1};
 			for (int i = 0; i < this.campos.length; i++) {
-				if (this.campos[i].length()>len[i] || Integer.parseInt(this.campos[i])==0) {
+				if (this.campos[i].length()>len[i]) {
 					System.out.println("|Error en la longitud de los campos.\n|Línea omitida");
 					return false;
 				}
 			}
 			int prioridad = Integer.parseInt(this.campos[2]);
-			if(prioridad>3){
+			if(prioridad<1 || prioridad>3){
 				System.out.println("|No se reconoce nivel de prioridad.\n|Línea omitida");
 				return false;
 			}
@@ -124,10 +127,17 @@ public class Conversor {
 				System.out.println("|No se reconoce tipo de evento de bloqueo.\n|Línea omitida");
 				return false;
 			}
-			if (Integer.parseInt(this.campos[3])<Integer.parseInt(this.campos[4])) {
+			int ins = Integer.parseInt(this.campos[3]);
+			int blo = Integer.parseInt(this.campos[4]);
+			if (ins==0 || blo==0){
+				System.out.println("|Número de instrucción no debe ser cero.\n|Línea omitida");
+				return false;
+			}
+			if (ins<blo) {
 				System.out.println("|Instruccion de bloqueo excede al total de instrucciones.\n|Línea omitida");
 				return false;
 			}
+			
 		} catch (NullPointerException e) {
 			// TODO: handle exception
 			System.out.println("|Sintaxis de proceso incorrecta.\n|Instrucción omitida");
