@@ -99,10 +99,28 @@ public class Conversor {
 					return false;
 				}
 			}
+			int prioridad = Integer.parseInt(this.campos[2]);
+			if(prioridad>3){
+				System.out.println("|No se reconoce nivel de prioridad.\n|Línea omitida");
+				return false;
+			}
+			int estado = Integer.parseInt(this.campos[1]);
 			if (!(
-					Integer.parseInt(this.campos[5])==Proceso.BLOQUEO_DISK || 
-					Integer.parseInt(this.campos[5])==Proceso.BLOQUEO_ES
+					estado==Proceso.NUEVO || 
+					estado==Proceso.LISTO ||
+					estado==Proceso.EJECUTANDO ||
+					estado==Proceso.BLOQUEADO ||
+					estado==Proceso.SALIENTE
 			)) {
+				System.out.println("|No se reconoce estado.\n|Línea omitida");
+				return false;
+			}
+			int bloqueo = Integer.parseInt(this.campos[5]);
+			if (!(
+					bloqueo==Proceso.BLOQUEO_DISK || 
+					bloqueo==Proceso.BLOQUEO_ES
+			)) {
+			
 				System.out.println("|No se reconoce tipo de evento de bloqueo.\n|Línea omitida");
 				return false;
 			}

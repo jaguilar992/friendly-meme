@@ -19,6 +19,12 @@ public class Proceso {
 	
 	public static final int CICLOS_ES = 13;
 	public static final int CICLOS_DISK = 27;
+	
+	public static final int NUEVO = 0;
+	public static final int LISTO= 1;
+	public static final int EJECUTANDO = 2;
+	public static final int BLOQUEADO = 3;
+	public static final int SALIENTE = 4;
 	// CAMPOS LOGICOS, ESTADO
 	public int getId() {
 		return id;
