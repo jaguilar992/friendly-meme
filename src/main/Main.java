@@ -17,8 +17,8 @@ public class Main {
 		System.out.println("***** Gestor de procesos ***** "
 				+ "\n \tCARGA");
 		System.out.println("\nSíntaxis de proceso: "
-				+ "[0-9]{,4}/[0-4]/[1-3]/[0-9]{,3}/[0-9]{,3}/[3,5]"
-				+ "\t\nEjemplo: 1111/0/1/10/2/3");
+				+ "[0-9]{4}/[0-4]/[1-3]/[0-9]{3}/[0-9]{3}/[3,5]"
+				+ "\t\nEjemplo: 1111/0/1/010/002/3;");
 		
 		System.out.print("\n¿Desea ingresar un proceso? (S/N): ");
 		resp=scan.nextLine().toUpperCase();
@@ -26,14 +26,14 @@ public class Main {
 			System.out.print("\tIngrese Proceso: ");
 			linea = scan.nextLine();
 			Parser p = new Parser(linea);
-			System.out.println(p.getLinea());
 			if(p.isOK){
-				procesos.METE(p.getProceso());;
+				procesos.METE(p.getProceso());
+				System.out.println("Proceso agregado a PILA exitosamente.");
 			}	
 			System.out.print("¿Desea ingresar un proceso? (S/N): ");
 			resp=scan.nextLine().toUpperCase();
 		}
-		
+		scan.close();
 		System.out.println("\nPILA de PROCESOS NUEVOS:\n"+procesos);
 	}
 			

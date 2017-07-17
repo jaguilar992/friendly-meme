@@ -75,14 +75,14 @@ public class LISTA{
 	
     @Override // util para impresion
     public String toString() {
-	String m ="<";
+	String m ="[";
 	for (int i = this.PRIMERO(); i <this.FIN(); i++) {
 	    m+=(this.arrLista.get(i)).toString();
 	    if(i!=this.FIN()-1){
 	    	m+=", ";
 	    }
 	}
-	return m+">";
+	return m+"]";
     }
     
     public ArrayList<Object> getArrLista() {

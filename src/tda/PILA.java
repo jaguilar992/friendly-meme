@@ -17,7 +17,7 @@ public class PILA {
         if (this.VACIA()!=true) {
             return pila.RECUPERA(pila.ANTERIOR(pila.FIN()));
         }else{
-            System.err.println("No se hallÃ³ TOPE: PILA vacÃ­a");
+            System.err.println("No se halló TOPE: PILA vacía");
             return null;
         }
     }
@@ -25,10 +25,10 @@ public class PILA {
         if (this.VACIA()!=true) {
             pila.SUPRIME(pila.ANTERIOR(pila.FIN()));
         }else{
-            System.err.println("No se hallÃ³ TOPE: PILA vacÃ­a");
+            System.err.println("No se halló TOPE: PILA vacía");
         }   
     }
-    public int CUENTA() { // AÃ‘ADIDA: DEVUELVE EL NUMERO DE ELEMENTOS EN PILA
+    public int CUENTA() { // AÑADIDA: DEVUELVE EL NUMERO DE ELEMENTOS EN PILA
     return pila.FIN();
     }
    @Override // util para impresion

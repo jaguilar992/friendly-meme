@@ -98,7 +98,7 @@ public class Parser {
 		try {
 			int[] len = {4,1,1,3,3,1};
 			for (int i = 0; i < this.campos.length; i++) {
-				if (this.campos[i].length()>len[i]) {
+				if (this.campos[i].length()!=len[i]) {
 					System.out.println("|Error en la longitud de los campos.\n|Línea omitida");
 					return false;
 				}
