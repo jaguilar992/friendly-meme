@@ -6,7 +6,14 @@ public class Proceso {
 	private int nInst; // Total de instrucciones
 	private int nInstBloqueo; // Instrucción donde ocurre el bloqueo
 	private int tipoBloqueo;
+	private int estado;
 	
+	public int getEstado() {
+		return estado;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
 	public static final int BLOQUEO_ES = 3;
 	public static final int BLOQUEO_DISK = 5;
 	
@@ -42,6 +49,12 @@ public class Proceso {
 	}
 	public void setTipoBloqueo(int tipoBloqueo) {
 		this.tipoBloqueo = tipoBloqueo;
+	}
+	@Override
+	public String toString() {
+		return "Proceso [\nId:" + id + "\nEstado:" + estado + "\nPrioridad:" + prioridad + "\nInstrucciones:" + nInst 
+				+ "\nBloqueo:" + nInstBloqueo
+				+ "\nTipo:" + tipoBloqueo + "\n]";
 	}
 	
 	
