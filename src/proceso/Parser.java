@@ -88,6 +88,7 @@ public class Parser {
 		while(m.find()){
 			fin=true;
 		}
+		if(!fin) System.out.println("|Se esperaba ; al final de línea"); 
 		if(cs==5 && fin){
 			return true;
 		}else return false;
