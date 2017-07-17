@@ -99,7 +99,10 @@ public class Conversor {
 					return false;
 				}
 			}
-			if (!(Integer.parseInt(this.campos[5])==Proceso.BLOQUEO_DISK || Integer.parseInt(this.campos[5])==Proceso.BLOQUEO_ES)) {
+			if (!(
+					Integer.parseInt(this.campos[5])==Proceso.BLOQUEO_DISK || 
+					Integer.parseInt(this.campos[5])==Proceso.BLOQUEO_ES
+			)) {
 				System.out.println("|No se reconoce tipo de evento de bloqueo.\n|Línea omitida");
 				return false;
 			}
