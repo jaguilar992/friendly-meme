@@ -29,9 +29,7 @@ public class Parser {
 		this.separar();
 		this.crearProceso();
 	}
-	
-	
-	
+		
 	public String getLinea() {
 		return linea;
 	}
@@ -39,6 +37,7 @@ public class Parser {
 		return proceso;
 	}
 	public void setLinea(String linea) {
+		this.isOK=false;
 		this.linea = linea;
 		this.separar();
 		this.crearProceso();
@@ -46,7 +45,7 @@ public class Parser {
 	public void separar(){
 		if(this.linea!=null && !haveChars() && cheSyntax()){
 			String [] campos = new String[6];
-			String pattern = "(\\d*[^A-Za-z\\W])";
+			String pattern = "(\\d*[^\\W])";
 			Pattern p = Pattern.compile(pattern);
 			Matcher m = p.matcher(this.linea);
 			int count = 0;
@@ -61,7 +60,7 @@ public class Parser {
 	}
 	
 	public boolean haveChars(){
-			String pattern = "([a-zA-Z]*[^\\/0-9;])";
+			String pattern = "(\\W*[^\\/\\d;])";
 			Pattern p = Pattern.compile(pattern);
 			Matcher m = p.matcher(this.linea);
 			while(m.find()){
@@ -88,7 +87,7 @@ public class Parser {
 		while(m.find()){
 			fin=true;
 		}
-		if(!fin) System.out.println("|Se esperaba ; al final de línea"); 
+		if(!fin) System.out.println("  |Se esperaba ; al final de línea"); 
 		if(cs==5 && fin){
 			return true;
 		}else return false;
@@ -99,13 +98,13 @@ public class Parser {
 			int[] len = {4,1,1,3,3,1};
 			for (int i = 0; i < this.campos.length; i++) {
 				if (this.campos[i].length()!=len[i]) {
-					System.out.println("|Error en la longitud de los campos.\n|Línea omitida");
+					System.out.println("  |Error en la longitud de los campos: campo["+(i+1)+"].\n  |Línea omitida");
 					return false;
 				}
 			}
 			int prioridad = Integer.parseInt(this.campos[2]);
 			if(prioridad<1 || prioridad>3){
-				System.out.println("|No se reconoce nivel de prioridad.\n|Línea omitida");
+				System.out.println("  |No se reconoce nivel de prioridad "+prioridad+" [1-3].\n  |Línea omitida");
 				return false;
 			}
 			int estado = Integer.parseInt(this.campos[1]);
@@ -116,7 +115,7 @@ public class Parser {
 					estado==Proceso.BLOQUEADO ||
 					estado==Proceso.SALIENTE
 			)) {
-				System.out.println("|No se reconoce estado.\n|Línea omitida");
+				System.out.println("  |No se reconoce estado "+estado+" [0-4] .\n  |Línea omitida");
 				return false;
 			}
 			int bloqueo = Integer.parseInt(this.campos[5]);
@@ -125,23 +124,22 @@ public class Parser {
 					bloqueo==Proceso.BLOQUEO_ES
 			)) {
 			
-				System.out.println("|No se reconoce tipo de evento de bloqueo.\n|Línea omitida");
+				System.out.println("  |No se reconoce tipo de evento de bloqueo "+bloqueo+" .\n  |Línea omitida");
 				return false;
 			}
 			int ins = Integer.parseInt(this.campos[3]);
 			int blo = Integer.parseInt(this.campos[4]);
 			if (ins==0 || blo==0){
-				System.out.println("|Número de instrucción no debe ser cero.\n|Línea omitida");
+				System.out.println("  |Número de instrucción no debe ser cero.\n  |Línea omitida");
 				return false;
 			}
 			if (ins<blo) {
-				System.out.println("|Instruccion de bloqueo excede al total de instrucciones.\n|Línea omitida");
+				System.out.println("  |Instruccion de bloqueo excede al total de instrucciones.\n  |Línea omitida");
 				return false;
 			}
 			
 		} catch (NullPointerException e) {
-			// TODO: handle exception
-			System.out.println("|Sintaxis de proceso incorrecta.\n|Instrucción omitida");
+			System.out.println("  |Sintaxis de proceso incorrecta.\n  |Instrucción omitida");
 			return false;
 		}
 		return true;
