@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import proceso.Parser;
+import proceso.ProcessFile;
 import tda.PILA;
 
 public class Main {
@@ -13,11 +14,10 @@ public class Main {
 		
 		PILA procesos = new PILA();
 		Parser conversor = new Parser();
-		
-		ArrayList<String> lineas;
 		try {
 			if (args.length==1) {
-				lineas =  readLines(args[0]);
+				ProcessFile file = new ProcessFile(args[0]);
+				ArrayList<String> lineas = file.readlines();
 				for (String string : lineas) {
 					conversor.setLinea(string);
 					if (conversor.isOK) {
@@ -38,20 +38,5 @@ public class Main {
 			
 	}
 	
-	public static ArrayList<String> readLines(String file){
-		ArrayList<String> lineas = new ArrayList<>();
-		Path p = Paths.get(file);
-		try {
-			BufferedReader b = Files.newBufferedReader(p);
-			String linea;
-			while((linea=b.readLine())!=null){
-				if(linea!=""){
-					lineas.add(linea);
-				}
-			}
-		} catch (Exception e) {
-			
-		}
-		return lineas;
-	}
+
 }

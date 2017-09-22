@@ -22,7 +22,6 @@ public class Parser {
 	 * campos[5] // EVENTO DE BLOQUEO
 	 * */
 	public boolean isOK = false; // Almacena un valor lógico, si la conversión es exitosa.
-	
 	public Parser(){}
 	public Parser(String linea){
 		this.linea = linea;
@@ -43,7 +42,7 @@ public class Parser {
 		this.crearProceso();
 	}
 	public void separar(){
-		if(this.linea!=null && !haveChars() && cheSyntax()){
+		if(this.linea!=null && !haveChars() && checkSyntax()){
 			String [] campos = new String[6];
 			String pattern = "(\\d*[^\\W])";
 			Pattern p = Pattern.compile(pattern);
@@ -70,7 +69,7 @@ public class Parser {
 	}
 	
 	// Verifica número correcto de plecas
-	public boolean cheSyntax(){
+	public boolean checkSyntax(){
 		//contar slashes
 		String pattern = "\\/";
 		Pattern p = Pattern.compile(pattern);
