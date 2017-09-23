@@ -12,14 +12,19 @@ public class COLA {
 		if (!this.VACIA()) {
 			cola.SUPRIME(cola.PRIMERO());
 		}else{
-			System.err.println("No se encontrÃ³ FRENTE: COLA vacÃ­a");
+			System.err.println("No se encontró FRENTE: COLA vacía");
 		}
 	}
+	
+	public Object RECUPERA(int i){
+		return cola.RECUPERA(i);
+	}
+	
 	public Object FRENTE (){
 		if (!this.VACIA()) {
 			return cola.RECUPERA(cola.PRIMERO());
 		}else{
-			System.err.println("No se encontrÃ³ FRENTE: COLA vacÃ­a");
+			System.err.println("No se encontró FRENTE: COLA vacía");
 			return null;	
 		}
 	}

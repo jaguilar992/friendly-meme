@@ -58,12 +58,12 @@ public class Proceso {
 	}
 	@Override
 	public String toString() {
-		return "Proceso {\n\tid:" + id 
-				+ ",\n\testado:" + estado 
-				+ ",\n\tprioridad:" + prioridad 
-				+ ",\n\tinstrucciones:" + nInst 
-				+ ",\n\tbloqueo:" + nInstBloqueo
-				+ ",\n\ttipo:" + tipoBloqueo + "\n}";
+		return "Proceso {id:" + id 
+				+ ", estado:" + estado 
+				+ ", prioridad:" + prioridad 
+				+ ", instrucciones:" + nInst 
+				+ ", bloqueo:" + nInstBloqueo
+				+ ", tipo:" + tipoBloqueo + "}";
 	}
 	
 	

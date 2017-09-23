@@ -21,6 +21,10 @@ public class PILA {
             return null;
         }
     }
+    public Object RECUPERA(int i){
+    	return pila.RECUPERA(i);
+    }
+    
     public void SACA(){
         if (this.VACIA()!=true) {
             pila.SUPRIME(pila.ANTERIOR(pila.FIN()));
