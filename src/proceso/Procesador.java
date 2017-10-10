@@ -35,24 +35,33 @@ public class Procesador {
 		1. Aumentar contador de cilos (Reloj del procesador)
 		2. Encolar a listo(Prioridad[i] los procesos que deben salir del bloqueo, verificar)
 		3. Aumentar contador de bloqueo de todos los de la lista de procesos bloqueados
-		4. IF  ejecutando es null -> CARGAR PROCESOS
+		4. IF :: ejecutando es null (CARGAR PROCESO LISTO)
 			-> OBTENER UN PROCESO LISTO SEGUN PRIORIDAD [1][2][3] (SACAR DE LA COLA DE LISTOS)
-			-> AUMENTAR (contador de segmento, contador de instruccion) del proceso
-		    
-		    ->IF Verificar si debe ser bloqueado :: 
-				-> Mover proceso a bloqueados []
-				-> Set procesos ejecutando a null
-			->ELSE IF: Verifica si debe disminuirse la prioridad del proceso :: 
-				-> Mover proceso a una COLA de prioridad-1
-				-> Set procesos ejecutando a null
-			-> ELSE:
-				-> continue
+			ELSE :: 
+				-> AUMENTAR (contador de segmento, contador de instruccion) del proceso
+		    	->IF Verificar si debe ser bloqueado :: 
+					-> Mover proceso a bloqueados []
+					-> Set procesos ejecutando a null
+				->ELSE IF: Verifica si debe disminuirse la prioridad del proceso :: 
+					-> Mover proceso a una COLA de prioridad-1
+					-> Set procesos ejecutando a null
+				-> ELSE:
+					-> continue
 		 */
 		
 		//1
 		this.c_ciclo++;
 		//2
 		for(Proceso p :bloqueados.getDesbloqueados()) {
+			int prioridad = p.getPrioridad();
+			listos[prioridad-1].PON_EN_COLA(p);
+		}
+		//3
+		this.bloqueados.plusc_bloqueoAll();
+		//4
+		if(ejecutando==null) {
+			
+		}else {
 			
 		}
 	}
