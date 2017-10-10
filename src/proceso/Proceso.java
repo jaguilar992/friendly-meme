@@ -8,6 +8,7 @@ public class Proceso {
 	private int tipoBloqueo;
 	private int estado;
 	
+	private int c_seg=0; // Contador del número de segmentos consecutivos ejecutados en el procesador
 	private int c_inst = 0;
 	private int c_bloqueo = 0;
 	
@@ -76,6 +77,18 @@ public class Proceso {
 	
 	public void plusc_bloqueo() {
 		this.c_bloqueo++;
+	}
+	
+	public void resetc_seg() {
+		this.c_seg=0;
+	}
+	
+	public void plusc_seg() {
+		this.c_seg++;
+	}
+	
+	public int getc_seg() {
+		return this.c_seg;
 	}
 	
 	@Override

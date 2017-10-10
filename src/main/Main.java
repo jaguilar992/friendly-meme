@@ -2,6 +2,7 @@ package main;
 
 import java.util.ArrayList;
 import proceso.Parser;
+import proceso.Procesador;
 import proceso.Proceso;
 import proceso.ProcessFile;
 import tda.COLA;
@@ -37,12 +38,22 @@ public class Main {
 			System.out.println("\tUSO: java -jar Gestor.jar <filename>");
 		}		
 		
-		// CARGA COLA [] Prioridades
-		for (int i = 0; i < nuevos.CUENTA(); i++) {
-			Proceso l = (Proceso)nuevos.FRENTE();
-			int prioridad = l.getPrioridad();
-			listos[prioridad-1].PON_EN_COLA(l);
+		
+		// PROCESAMIENTO (GESTOR)
+		int limite = 50;
+		Procesador core = new Procesador();
+		core.setLimit(limite);
+		core.nuevos = nuevos;
+		core.loadNuevos();
+		
+		
+		// LOOP DEL PROCESAROR, A ejecutarse <core.getLimit()> veces
+		for (int i = 0; i<core.getLimite() ;i++) {
+			core.rutina();
 		}
+		
+		
+		
 			
 	}
 	
