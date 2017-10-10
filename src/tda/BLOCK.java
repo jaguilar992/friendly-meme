@@ -1,13 +1,12 @@
 package tda;
 import java.util.ArrayList;
-
 import proceso.Proceso;
 
 public class BLOCK extends LISTA{
 
 	// Remueve de la lista de bloqueados un proceso
-	public Object popProceso(int i) {
-		Object o = super.RECUPERA(i);
+	public Proceso popProceso(int i) {
+		Proceso o = (Proceso)super.RECUPERA(i);
 		super.SUPRIME(i);
 		return o;
 	}
@@ -30,14 +29,12 @@ public class BLOCK extends LISTA{
 			switch (p_i.getTipoBloqueo()) {
 			case Proceso.BLOQUEO_DISK:
 				if(p_i.getc_bloqueo()==Proceso.CICLOS_DISK) {
-					desbloq.add(p_i);
-					this.SUPRIME(i);
+					desbloq.add(this.popProceso(i));
 				}
 				break;
 			case Proceso.BLOQUEO_ES:
 				if(p_i.getc_bloqueo()==Proceso.CICLOS_ES) {
-					desbloq.add(p_i);
-					this.SUPRIME(i);
+					desbloq.add(this.popProceso(i));
 				}
 				break;
 			default:
