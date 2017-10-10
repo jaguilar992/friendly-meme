@@ -8,12 +8,7 @@ public class Proceso {
 	private int tipoBloqueo;
 	private int estado;
 	
-	public int getEstado() {
-		return estado;
-	}
-	public void setEstado(int estado) {
-		this.estado = estado;
-	}
+	
 	public static final int BLOQUEO_ES = 3;
 	public static final int BLOQUEO_DISK = 5;
 	
@@ -25,7 +20,15 @@ public class Proceso {
 	public static final int EJECUTANDO = 2;
 	public static final int BLOQUEADO = 3;
 	public static final int SALIENTE = 4;
-	// CAMPOS LOGICOS, ESTADO
+	
+	public int getEstado() {
+		return estado;
+	}
+	
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	
 	public int getId() {
 		return id;
 	}

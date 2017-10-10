@@ -8,6 +8,7 @@ public class COLA {
 	public void PON_EN_COLA(Object x){
 		cola.INSERTA(x, cola.FIN());
 	}
+	
 	public void QUITA_DE_COLA (){
 		if (!this.VACIA()) {
 			cola.SUPRIME(cola.PRIMERO());
@@ -22,7 +23,9 @@ public class COLA {
 	
 	public Object FRENTE (){
 		if (!this.VACIA()) {
-			return cola.RECUPERA(cola.PRIMERO());
+			Object a = cola.RECUPERA(cola.PRIMERO());
+			this.QUITA_DE_COLA();
+			return a;
 		}else{
 			System.err.println("No se encontró FRENTE: COLA vacía");
 			return null;	

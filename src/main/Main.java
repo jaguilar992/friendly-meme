@@ -9,12 +9,13 @@ import tda.COLA;
 public class Main {
 	public static void main(String[] args) {
 		
-		COLA cargados = new COLA();
+		COLA nuevos = new COLA();
 		COLA listos[] = new COLA[3];
 		listos[0] = new COLA();
 		listos[1] = new COLA();
 		listos[2] = new COLA();
 		
+		// LEER ARCHIVO Y CREAR COLA DE NUEVOS
 		if (args.length==1) {
 			ProcessFile file = new ProcessFile(args[0]);
 			ArrayList<String> lineas = file.readlines();
@@ -23,10 +24,10 @@ public class Main {
 				conversor.setLinea(string);
 				if (conversor.isOK) {
 					Proceso p = conversor.getProceso();
-					if(!repite(cargados,p)){
-						cargados.PON_EN_COLA(p);
+					if(!repite(nuevos,p)){
+						nuevos.PON_EN_COLA(p);
 					}else{
-						System.out.println("  |ID repetido, linea omitida: ID -> "+p.getId()+"\n");
+						System.out.println("  |ID repetido, linea omitida: ID :: "+p.getId()+"\n");
 					}
 				}else{
 					System.out.println("  |Error en: "+string+"\n");
@@ -36,24 +37,12 @@ public class Main {
 			System.out.println("\tUSO: java -jar Gestor.jar <filename>");
 		}		
 		
-//		if (!cargados.VACIA()) {
-//			System.out.println("\nTotal Cargados: "+cargados.CUENTA());
-//			System.out.println(cargados);
-//		}
-	
-		for (int i = 0; i < cargados.CUENTA(); i++) {
-			Proceso l = (Proceso)cargados.RECUPERA(i);
+		// CARGA COLA [] Prioridades
+		for (int i = 0; i < nuevos.CUENTA(); i++) {
+			Proceso l = (Proceso)nuevos.FRENTE();
 			int prioridad = l.getPrioridad();
 			listos[prioridad-1].PON_EN_COLA(l);
 		}
-		
-		System.out.println("Procesos Listos: ");
-		System.out.println("\nCOLA Prioridad 1:");
-		System.out.println(listos[0]);
-		System.out.println("\nCOLA Prioridad 2:");
-		System.out.println(listos[1]);
-		System.out.println("\nCOLA Prioridad 3:");
-		System.out.println(listos[2]);
 			
 	}
 	
