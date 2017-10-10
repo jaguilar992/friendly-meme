@@ -8,6 +8,8 @@ public class Proceso {
 	private int tipoBloqueo;
 	private int estado;
 	
+	private int c_inst = 0;
+	private int c_bloqueo = 0;
 	
 	public static final int BLOQUEO_ES = 3;
 	public static final int BLOQUEO_DISK = 5;
@@ -59,6 +61,23 @@ public class Proceso {
 	public void setTipoBloqueo(int tipoBloqueo) {
 		this.tipoBloqueo = tipoBloqueo;
 	}
+	
+	public int getc_inst() {
+		return this.c_inst;
+	}
+	
+	public int getc_bloqueo() {
+		return this.c_bloqueo;
+	}
+	
+	public void plusc_inst() {
+		this.c_inst++;
+	}
+	
+	public void plusc_bloqueo() {
+		this.c_bloqueo++;
+	}
+	
 	@Override
 	public String toString() {
 		return "Proceso {id:" + id 
