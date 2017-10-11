@@ -17,12 +17,14 @@ public class Main {
 		listos[2] = new COLA();
 		
 		// LEER ARCHIVO Y CREAR COLA DE NUEVOS
-		if (args.length==1) {
-			ProcessFile file = new ProcessFile(args[0]);
+		
+		String path = "resource/procesos_1.txt";
+		
+		if (path!=null) {
+			ProcessFile file = new ProcessFile(path);
 			ArrayList<String> lineas = file.readlines();
 			for (String string : lineas) {
-				Parser conversor = new Parser();
-				conversor.setLinea(string);
+				Parser conversor = new Parser(string);
 				if (conversor.isOK) {
 					Proceso p = conversor.getProceso();
 					if(!repite(nuevos,p)){
@@ -34,23 +36,45 @@ public class Main {
 					System.out.println("  |Error en: "+string+"\n");
 				}
 			}
-		}else{
-			System.out.println("\tUSO: java -jar Gestor.jar <filename>");
-		}		
+		}
 		
 		
 		// PROCESAMIENTO (GESTOR)
-		int limite = 50;
+		int limite = 1000;
 		Procesador core = new Procesador();
 		core.setLimit(limite);
 		core.nuevos = nuevos;
-		core.loadNuevos();
+		core.loadNuevos(); // MUEVE LOS PROCESOS NUEVOS A LISTOS
 		
 		
 		// LOOP DEL PROCESAROR, A ejecutarse <core.getLimit()> veces
 		for (int i = 0; i<core.getLimite() ;i++) {
 			core.rutina();
 		}
+		
+		
+		// IMPRESION DE COLAS DE ESTADO
+		
+		// LISTOS
+		COLA listoss[] = core.getListos();
+		System.out.println("PRIORIDAD 1");
+		System.out.println(listoss[0]);
+		System.out.println("PRIORIDAD 2");
+		System.out.println(listoss[1]);
+		System.out.println("PRIORIDAD 3");
+		System.out.println(listoss[2]);
+		
+		// EJECUTANDO
+		System.out.println("EJECUTANDO");
+		System.out.println(core.getEjecutando());
+		
+		// BLOQUEADOS
+		System.out.println("BLOQUEADOS");
+		System.out.print(core.getBloqueados());
+		
+		//SALIENTES
+		System.out.println("SALIENTES");
+		System.out.println(core.getSalientes());
 		
 		
 		

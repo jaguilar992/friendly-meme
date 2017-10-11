@@ -2,39 +2,41 @@ package tda;
 import java.util.ArrayList;
 import proceso.Proceso;
 
-public class BLOCK extends LISTA{
+public class BLOCK extends COLA{
 
 	// Remueve de la lista de bloqueados un proceso
-	public Proceso popProceso(int i) {
-		Proceso o = (Proceso)super.RECUPERA(i);
-		super.SUPRIME(i);
-		return o;
-	}
 	
 	// Suma 1 a todos los contadores de proceso mientras estan en estado de bloqueado
 	public void plusc_bloqueoAll() {
-		for(int i=0; i<this.CUENTA(); i++) {
-			Proceso p_i = ((Proceso)this.RECUPERA(i));
-			if(p_i.getc_bloqueo() == Proceso.BLOQUEADO) {
-				p_i.plusc_bloqueo();
-			}
+		int n = this.CUENTA();
+		for(int i=0; i<n; i++) {
+			Proceso p_i = (Proceso)this.FRENTE();
+			p_i.plusc_bloqueo();
+			this.PON_EN_COLA(p_i);
 		}
 	}
 	
 	// Obtiene los procesos que salen del bloqueo
 	public ArrayList<Proceso> getDesbloqueados(){
 		ArrayList<Proceso> desbloq = new ArrayList<>();
-		for(int i=0; i<this.CUENTA(); i++) {
-			Proceso p_i = ((Proceso)this.RECUPERA(i));
+		int n = this.CUENTA();
+		for(int i=0; i<n; i++) {
+			Proceso p_i = ((Proceso)this.FRENTE());
 			switch (p_i.getTipoBloqueo()) {
 			case Proceso.BLOQUEO_DISK:
 				if(p_i.getc_bloqueo()==Proceso.CICLOS_DISK) {
-					desbloq.add(this.popProceso(i));
+					p_i.setEstado(Proceso.LISTO);
+					desbloq.add(p_i);
+				}else {
+					this.PON_EN_COLA(p_i);
 				}
 				break;
 			case Proceso.BLOQUEO_ES:
 				if(p_i.getc_bloqueo()==Proceso.CICLOS_ES) {
-					desbloq.add(this.popProceso(i));
+					p_i.setEstado(Proceso.LISTO);
+					desbloq.add(p_i);
+				}else {
+					this.PON_EN_COLA(p_i);
 				}
 				break;
 			default:
@@ -44,5 +46,11 @@ public class BLOCK extends LISTA{
 		return desbloq;
 	}
 	
+	@Override
+	public void PON_EN_COLA(Object x) {
+		Proceso p = (Proceso)x;
+		p.setEstado(Proceso.BLOQUEADO);
+		super.PON_EN_COLA(p);
+	}
 	
 }
