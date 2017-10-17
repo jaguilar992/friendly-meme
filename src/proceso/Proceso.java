@@ -95,7 +95,7 @@ public class Proceso {
 	// enque se está ejecutando desde que inicio el proceso
 	// Param: int, recibe el contador de ciclos reloj de un procesador.
 	public void plusc_seg(int contador) {
-		if((this.ejecutadesde-contador+1) % 5 == 0) {
+		if((contador-this.ejecutadesde+1) % 5 == 0) {
 			this.c_seg++;
 		}
 	}

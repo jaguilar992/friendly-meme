@@ -40,7 +40,7 @@ public class Main {
 		
 		
 		// PROCESAMIENTO (GESTOR)
-		int limite = 1000;
+		int limite = 800;
 		Procesador core = new Procesador();
 		core.setLimit(limite);
 		core.nuevos = nuevos;
@@ -57,23 +57,23 @@ public class Main {
 		
 		// LISTOS
 		COLA listoss[] = core.getListos();
-		System.out.println("PRIORIDAD 1");
+		System.out.println("\nPRIORIDAD 1");
 		System.out.println(listoss[0]);
-		System.out.println("PRIORIDAD 2");
+		System.out.println("\nPRIORIDAD 2");
 		System.out.println(listoss[1]);
-		System.out.println("PRIORIDAD 3");
+		System.out.println("\nPRIORIDAD 3");
 		System.out.println(listoss[2]);
 		
 		// EJECUTANDO
-		System.out.println("EJECUTANDO");
+		System.out.println("\nEJECUTANDO");
 		System.out.println(core.getEjecutando());
 		
 		// BLOQUEADOS
-		System.out.println("BLOQUEADOS");
+		System.out.println("\nBLOQUEADOS");
 		System.out.print(core.getBloqueados());
 		
 		//SALIENTES
-		System.out.println("SALIENTES");
+		System.out.println("\nSALIENTES");
 		System.out.println(core.getSalientes());
 		
 		
