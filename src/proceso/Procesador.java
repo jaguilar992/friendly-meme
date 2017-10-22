@@ -70,6 +70,7 @@ public class Procesador {
 			if(ejecutar!=null) {
 				this.ejecutando = ejecutar;
 				this.ejecutando.setEstado(Proceso.EJECUTANDO);
+				this.ejecutando.setEjecutadesde(this.c_ciclo);
 				this.loaded = true;
 			}
 		}

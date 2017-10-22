@@ -40,7 +40,7 @@ public class Main {
 		
 		
 		// PROCESAMIENTO (GESTOR)
-		int limite = 800;
+		int limite = 11;
 		Procesador core = new Procesador();
 		core.setLimit(limite);
 		core.nuevos = nuevos;
@@ -48,7 +48,7 @@ public class Main {
 		
 		
 		// LOOP DEL PROCESAROR, A ejecutarse <core.getLimit()> veces
-		for (int i = 0; i<core.getLimite() ;i++) {
+		for (int i = 1; i<=core.getLimite() ;i++) {
 			core.rutina();
 		}
 		
@@ -57,11 +57,11 @@ public class Main {
 		
 		// LISTOS
 		COLA listoss[] = core.getListos();
-		System.out.println("\nPRIORIDAD 1");
+		System.out.println("\nLISTOS, PRIORIDAD 1");
 		System.out.println(listoss[0]);
-		System.out.println("\nPRIORIDAD 2");
+		System.out.println("\nLISTOS, PRIORIDAD 2");
 		System.out.println(listoss[1]);
-		System.out.println("\nPRIORIDAD 3");
+		System.out.println("\nLISTOS, PRIORIDAD 3");
 		System.out.println(listoss[2]);
 		
 		// EJECUTANDO
